@@ -1,17 +1,17 @@
-# ZIBELINO Telegram Bot
+# Тест задание от ООО Литий СБ: Telegram-бот ZIBELINO
 
-Commercial Telegram bot for the ZIBELINO accessories brand. The bot introduces the brand through short visual cards, sends marketplace links, shows current promotions, links to social media, and helps users select a device to generate personalized marketplace search links.
+Коммерческий Telegram-бот для бренда аксессуаров ZIBELINO. Бот знакомит пользователя с брендом через короткие визуальные карточки, отправляет ссылки на маркетплейсы, показывает актуальные акции, ведет в соцсети и помогает выбрать устройство, чтобы сформировать персональные поисковые ссылки на маркетплейсы.
 
-## Technology Stack
+## Технологический стек
 
 - Python 3.12+
 - aiogram 3.x
 - python-dotenv
-- pytest for simple unit tests
+- pytest для простых unit-тестов
 
-No database, Redis, webhooks, Docker, external APIs, or marketplace API integrations are used.
+**По техническим требованиям, в проекте не используются база данных, Redis, webhooks, Docker, внешние API или интеграции с API маркетплейсов.**
 
-## Installation
+## Установка
 
 ```bash
 cd project
@@ -20,45 +20,45 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Configuration
+## Конфигурация
 
-Create `.env` from the example:
+Создайте `.env` на основе примера:
 
 ```bash
 cp .env.example .env
 ```
 
-Example `.env`:
+Пример `.env`:
 
 ```env
 BOT_TOKEN=1234567890:replace_with_your_telegram_bot_token
 MEDIA_DIR=media
 ```
 
-Place brand card images into `media/`:
+Поместите изображения брендовых карточек в папку `media/`:
 
-- `media/start.jpg` — brand welcome card
-- `media/shops.jpg` — catalog and marketplace card
-- `media/promo.jpg` — promotion card
-- `media/socials.jpg` — social media card
+- `media/start.jpg` — приветственная карточка бренда
+- `media/shops.jpg` — карточка каталога и маркетплейсов
+- `media/promo.jpg` — карточка с акциями
+- `media/socials.jpg` — карточка соцсетей
 
-If an image is missing, the bot sends the text and buttons without crashing.
+Если изображение отсутствует, бот не падает: он отправит текст и кнопки без картинки.
 
-## Run
+## Запуск
 
 ```bash
 python bot.py
 ```
 
-The bot runs in polling mode only.
+Бот работает только в режиме polling.
 
-## Tests
+## Тесты
 
 ```bash
 pytest
 ```
 
-## Project Structure
+## Структура проекта
 
 ```text
 project/
@@ -82,10 +82,10 @@ project/
 └── README.md
 ```
 
-## Notes
+## Примечания
 
-- Device selection uses aiogram FSM states: `choosing_brand`, `choosing_model`, `device_selected`.
-- Current device data is kept in FSM memory as `{"brand": "...", "model": "..."}`.
-- Marketplace links are generated locally with `urllib.parse.quote_plus`.
-- Unsupported user text returns the user to the main menu.
-- Menu navigation keeps the chat clean: the previous bot screen is deleted after a new screen is sent.
+- Выбор устройства реализован через FSM-состояния aiogram: `choosing_brand`, `choosing_model`, `device_selected`.
+- Данные выбранного устройства хранятся в памяти FSM в формате `{"brand": "...", "model": "..."}`.
+- Ссылки на маркетплейсы генерируются локально с помощью `urllib.parse.quote_plus`.
+- Неподдерживаемый пользовательский текст возвращает пользователя в главное меню.
+- Навигация по меню поддерживает чат чистым: предыдущий экран бота удаляется после отправки нового.
